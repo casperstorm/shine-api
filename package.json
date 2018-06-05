@@ -8,5 +8,10 @@
   "dependencies": {
     "express": "^4.16.3",
     "node": "^10.3.0"
+  },
+  "devDependencies": {
+    "@rise-digital/eslint-config-rise": "^2.2.1",
+    "eslint": "^4.19.1",
+    "prettier": "^1.13.4"
   }
 }
