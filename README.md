@@ -6,3 +6,5 @@ News aggreator for fetching relevant crypto news across different medias.
 yarn install
 yarn dev
 ```
+## License
+MIT
