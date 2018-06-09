@@ -9,13 +9,17 @@
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
-    "node": "^10.3.0"
+    "moment": "^2.22.2",
+    "node": "^10.3.0",
+    "twitter-lite": "^0.5.0"
   },
   "devDependencies": {
     "@rise-digital/eslint-config-rise": "^2.2.1",
     "eslint": "^4.19.1",
+    "nodemon": "^1.17.5",
     "prettier": "^1.13.4"
   }
 }

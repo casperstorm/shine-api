@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const newsRouter = require('./routes/news')
 const app = express()
