@@ -1,7 +1,8 @@
 const fetch = require('node-fetch')
 const _ = require('lodash')
 
-const REDDIT = 'https://www.reddit.com/user/C-Storm/m/cryptos/top.json?sort=new'
+const REDDIT =
+  'https://www.reddit.com/user/C-Storm/m/cryptos/top.json?sort=new&limit=100'
 
 const aggregateReddit = async () => {
   try {
@@ -24,15 +25,12 @@ const filterReddit = async (response) => {
     .chain(items)
     .map((item) => {
       return {
-        type: 'reddit',
+        source: item.data.subreddit_name_prefixed,
         id: item.data.id,
         title: item.data.title,
         description: item.data.selftext,
         url: item.data.url,
-        subreddit: item.data.subreddit_name_prefixed,
         created: item.data.created,
-        ups: item.data.ups,
-        num_comments: item.data.num_comments,
       }
     })
     .filter((item) => {
