@@ -23,10 +23,13 @@ app.use(
   })
 )
 
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json('invalid token')
+  }
+})
+
 app.use('/auth', authRouter)
 app.use('/news', newsRouter)
 
-app.listen(PORT, function() {
-  console.log('-> GET   http://localhost:3000/news')
-  console.log('-> POST  http://localhost:3000/auth')
-})
+app.listen(PORT, () => {})
