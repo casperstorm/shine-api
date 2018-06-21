@@ -6,7 +6,8 @@
   "author": "Casper Rogild Storm <casperstorm@me.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon ./src/index.js",
+    "start": "yarn dev"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
