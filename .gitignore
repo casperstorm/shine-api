@@ -67,3 +67,4 @@ typings/
 .serverless
 
 /functions/lib/
+/functions/.runtimeconfig.json
