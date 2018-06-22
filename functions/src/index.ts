@@ -1,8 +1,13 @@
 import * as functions from 'firebase-functions';
+import * as express from 'express'
+import newsRouter from './routes/news'
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const shine = functions.https.onRequest((request, response) => {
-  response.send("Hello from the underworld!");
-});
+const PORT = process.env || 3000
+
+const app = express()
+// new RequestHandlerParams
+app.use('/news', newsRouter)
+
+app.listen(PORT)
+
+export const shine = functions.https.onRequest(app);
