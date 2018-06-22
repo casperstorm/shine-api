@@ -3,8 +3,8 @@ News aggreator for fetching relevant crypto news across different medias.
 
 ## Build
 ```
-yarn install
-yarn dev
+npm install
+npm run dev
 ```
 ## License
 MIT

@@ -1,16 +1,15 @@
 import * as _ from 'lodash'
 import * as moment from 'moment'
-// import * as Parser from 'rss-parser'
-// const parser = new Parser()
+import * as Parser from 'rss-parser'
+const parser = new Parser()
 
 const FEED = 'https://news.bitcoin.com/feed/'
 
 export const aggregateBitcoin = async () => {
   try {
-    // const response = await parser.parseURL(FEED)
-    // const items = filterBitcoin(response.items)
-    // return items
-    return []
+    const response = await parser.parseURL(FEED)
+    const items = filterBitcoin(response.items)
+    return items
   } catch (error) {
     throw error
   }
