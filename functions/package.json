@@ -1,20 +1,27 @@
 {
   "name": "shine-api",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:casperstorm/shine-api.git",
   "author": "Casper Rogild Storm <casperstorm@me.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "yarn dev"
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "yarn build && firebase serve --only functions",
+    "shell": "yarn build && firebase functions:shell",
+    "start": "yarn shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
   },
+  "main": "lib/index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
     "firebase": "^5.0.4",
+    "firebase-admin": "~5.12.1",
+    "firebase-functions": "^1.1.0",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
@@ -22,9 +29,9 @@
     "rss-parser": "^3.1.3"
   },
   "devDependencies": {
-    "@rise-digital/eslint-config-rise": "^2.2.1",
-    "eslint": "^4.19.1",
-    "nodemon": "^1.17.5",
-    "prettier": "^1.13.4"
-  }
+    "prettier": "^1.13.4",
+    "tslint": "^5.8.0",
+    "typescript": "^2.5.3"
+  },
+  "private": true
 }
