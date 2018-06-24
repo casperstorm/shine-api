@@ -65,3 +65,7 @@ typings/
 
 # Serverless directories
 .serverless
+
+/functions/lib/
+/functions/.runtimeconfig.json
+/.DS_Store
