@@ -13,7 +13,7 @@ router.post(
     const password: string = req.body.password;
 
     if (!username || !password) {
-      res.status(401).json("missing either username or password");
+      res.status(401).json({ error: "missing either username or password" });
     }
 
     try {
@@ -29,14 +29,14 @@ router.post(
 router.post("/verify-api-token", async (req: Request, res: Response) => {
   const token: string = req.body.token;
   if (!token) {
-    res.status(401).json("missing token");
+    res.status(401).json({ error: "missing token" });
   }
 
   try {
     await validateToken(token);
-    res.status(201).json("token is valid");
+    res.status(201).json({ valid: true });
   } catch (err) {
-    res.status(201).json("token is invalid");
+    res.status(201).json({ valid: false });
   }
 });
 
