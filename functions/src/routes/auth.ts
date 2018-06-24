@@ -40,7 +40,7 @@ router.post("/verify-api-token", async (req: Request, res: Response) => {
   }
 });
 
-const login = async (username, password) => {
+const login = async (username: string, password: string) => {
   return firebase.auth().signInWithEmailAndPassword(username, password);
 };
 

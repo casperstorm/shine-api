@@ -4,7 +4,7 @@ const router: Router = Router();
 
 export default router;
 
-router.get("/", async (req: Request, res: Response) => {
+router.get("/", async (_, res: Response) => {
   try {
     const data = await aggregate();
     res.json(data);

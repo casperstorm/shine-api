@@ -3,23 +3,23 @@ import * as moment from "moment";
 import * as Parser from "rss-parser";
 
 const parser = new Parser();
-const FEED = "https://news.bitcoin.com/feed/";
+const FEED = "https://cryptovest.com/feed/";
 
-export const aggregateBitcoin = async () => {
+export const aggregateCryptovest = async () => {
   try {
     const response = await parser.parseURL(FEED);
-    const items = filterBitcoin(response.items);
+    const items = filterCryptovest(response.items);
     return items;
   } catch (error) {
     throw error;
   }
 };
 
-const filterBitcoin = async items => {
+const filterCryptovest = async items => {
   const filter = _.chain(items)
     .map(item => {
       return {
-        source: "bitcoin",
+        source: "cryptovest",
         id: item.guid,
         title: item.title,
         url: item.link,
