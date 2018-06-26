@@ -8,7 +8,7 @@ const FEED = "https://news.bitcoin.com/feed/";
 export const aggregateBitcoin = async () => {
   try {
     const response = await parser.parseURL(FEED);
-    const items = filterBitcoin(response.items);
+    const items = await filterBitcoin(response.items);
     return items;
   } catch (error) {
     throw error;
