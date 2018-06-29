@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import * as moment from "moment";
 import * as Parser from "rss-parser";
+import * as uuid from "uuid/v4";
 
 const parser = new Parser();
 const FEED = "https://www.newsbtc.com/feed/";
@@ -20,7 +21,7 @@ const filterNewsbtc = async items => {
     .map(item => {
       return {
         source: "newsbtc",
-        id: item.guid,
+        id: uuid(),
         title: item.title,
         url: item.link,
         created: moment(item.pubDate, "ddd DD MMM YYYY HH:mm:ss Z").unix()

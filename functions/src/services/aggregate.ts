@@ -37,15 +37,21 @@ const shouldUpdateData = (created: number) => {
     .isBefore(moment());
 };
 
-export const aggregate = async () => {
+export const aggregate = async (limit?: number) => {
+  console.log(`limiting to ${limit} results`);
   const data = await query();
   const updateData = shouldUpdateData(data.created);
 
+  let items = data.items;
+
   if (updateData) {
-    const items = await fetchData();
+    items = await fetchData();
     store(items);
-    return items;
+  }
+
+  if (limit) {
+    return items.slice(0, limit);
   } else {
-    return data.items;
+    return items;
   }
 };
