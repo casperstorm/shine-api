@@ -1,7 +1,8 @@
 import firebase from "firebase/app";
 import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
 import * as express from "express";
-//import { Router, Request, Response, NextFunction } from "express";
+
 import * as bodyParser from "body-parser";
 import * as jwtCheck from "express-jwt";
 
@@ -21,6 +22,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+admin.initializeApp(functions.config().firebase);
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
