@@ -8,39 +8,25 @@ import { aggregateTrustnodes } from "./trustnodes";
 import { store, query } from "../database/database";
 
 const fetchData = async () => {
-  const items = await aggregateBitcoin();
-  await store(items, "items");
+  const promises = [
+    aggregateBitcoin(),
+    aggregateBitcoinist(),
+    aggregateCryptovest(),
+    aggregateNewsbtc(),
+    aggregateTrustnodes()
+  ];
+  try {
+    const res = await Promise.all(promises);
+    const concat = _.concat(res);
+    const flatten = _.flatten(concat);
+    const sorted = _.sortBy(flatten, item => {
+      return moment.unix(item.created);
+    }).reverse();
 
-  return items;
-  // try {
-  //   const [
-  //     bitcoin
-  //     // bitcoinist,
-  //     // cryptovest,
-  //     // newsbtc,
-  //     // trustnodes
-  //   ] = await Promise.all([
-  //     aggregateBitcoin()
-  //     // aggregateBitcoinist(),
-  //     // aggregateCryptovest(),
-  //     // aggregateNewsbtc(),
-  //     // aggregateTrustnodes()
-  //   ]);
-  //   const concat = _.concat([
-  //     bitcoin
-  //     // bitcoinist,
-  //     // cryptovest,
-  //     // newsbtc,
-  //     // trustnodes
-  //   ]);
-  //   const flatten = _.flatten(concat);
-  //   const sorted = _.sortBy(flatten, item => {
-  //     return moment(item.created);
-  //   }).reverse();
-  //   return sorted;
-  // } catch (error) {
-  //   throw error;
-  // }
+    return sorted;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const shouldUpdateData = (created: number) => {
@@ -56,7 +42,9 @@ export const aggregate = async () => {
   const updateData = shouldUpdateData(data.created);
 
   if (updateData) {
-    return await fetchData();
+    const items = await fetchData();
+    store(items);
+    return items;
   } else {
     return data.items;
   }
